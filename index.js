@@ -1,6 +1,7 @@
 const express = require('express');
 const PORT = 3000;
 const ApiRouter = require('./api');
+const cors = require('cors');
 
 class NodeApp {
     constructor() {
@@ -8,7 +9,7 @@ class NodeApp {
         this.app.get('/', (request, response) => {
             response.send('It works!');
         });
-        this.app.use('/api', new ApiRouter().router);
+        this.app.use('/api', cors(), new ApiRouter().router);
         this.start();
     }
 
